@@ -15,9 +15,11 @@ import (
 	"github.com/golang-migrate/migrate"
 
 	_ "github.com/golang-migrate/migrate/database/mysql"
+	_ "github.com/golang-migrate/migrate/v4/database/mysql"
 
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/golang-migrate/migrate/source/file"
+	_ "github.com/golang-migrate/migrate/v4/source/file"
 )
 
 // migrateCmd represents the migrate command
