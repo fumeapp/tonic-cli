@@ -1,0 +1,8 @@
+
+.env
+.env.staging
+.env.production
+.idea
+__debug_bin
+main
+main.zip
