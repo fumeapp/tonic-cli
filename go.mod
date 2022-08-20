@@ -1,4 +1,4 @@
-module fumeapp/tonic-cli
+module github.com/fumeapp/tonic-cli
 
 go 1.19
 
