@@ -11,7 +11,6 @@ import (
 	"github.com/fumeapp/tonic/database"
 	"github.com/fumeapp/tonic/setting"
 	"github.com/golang-migrate/migrate"
-	"github.com/octoper/go-ray"
 
 	"github.com/spf13/cobra"
 )
@@ -20,12 +19,7 @@ import (
 var migrateCmd = &cobra.Command{
 	Use:   "migrate",
 	Short: "Run migrations",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Long:  `Run migrations.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("migrate called")
 
@@ -35,7 +29,6 @@ to quickly create a Cobra application.`,
 
 		setting.Setup()
 		database.Setup()
-		ray.Ray(database.DSN())
 
 		m, err := migrate.New("file://database/migrations", database.DSN())
 
