@@ -6,7 +6,7 @@ on:
     - production
 jobs:
   format:
-    name: gofmt
+    name: format
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-go@v3
@@ -14,7 +14,7 @@ jobs:
           go-version: 1.19
       - uses: actions/checkout@v3
 
-      - name: gofmt
+      - name: format
         uses: wearerequired/lint-action@v2
         with:
           gofmt: true
