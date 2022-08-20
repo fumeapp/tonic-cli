@@ -2,14 +2,8 @@ package main
 
 import (
 	"github.com/fumeapp/tonic-cli/cmd"
-	"github.com/fumeapp/tonic/database"
-	"github.com/fumeapp/tonic/setting"
+	_ "github.com/golang-migrate/migrate/v4/source/file"
 )
-
-func init() {
-	setting.Setup()
-	database.Setup()
-}
 
 func main() {
 	cmd.Execute()

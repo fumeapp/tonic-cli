@@ -4,15 +4,20 @@ Copyright © 2022 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
-	"fmt"
 	"log"
 	"os"
 
+	"github.com/spf13/cobra"
+
 	"github.com/fumeapp/tonic/database"
 	"github.com/fumeapp/tonic/setting"
+
 	"github.com/golang-migrate/migrate"
 
-	"github.com/spf13/cobra"
+	_ "github.com/golang-migrate/migrate/database/mysql"
+
+	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/golang-migrate/migrate/source/file"
 )
 
 // migrateCmd represents the migrate command
@@ -21,16 +26,13 @@ var migrateCmd = &cobra.Command{
 	Short: "Run migrations",
 	Long:  `Run migrations.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("migrate called")
-
 		if _, err := os.Stat("./database/migrations"); os.IsNotExist(err) {
 			log.Fatal("No migration directory database/migrations found")
 		}
 
 		setting.Setup()
-		database.Setup()
 
-		m, err := migrate.New("file://database/migrations", database.DSN())
+		m, err := migrate.New("file://database/migrations", database.DURL())
 
 		if err != nil {
 			log.Fatal(err)
