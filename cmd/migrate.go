@@ -34,6 +34,8 @@ var migrateCmd = &cobra.Command{
 
 		setting.Setup()
 
+		log.Println("Connecting to : " + database.DURL())
+
 		m, err := migrate.New("file://database/migrations", database.DURL())
 
 		if err != nil {
