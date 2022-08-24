@@ -7,7 +7,6 @@ import (
 	"log"
 	"os"
 
-	"github.com/octoper/go-ray"
 	"github.com/spf13/cobra"
 
 	"github.com/fumeapp/tonic/database"
@@ -28,10 +27,6 @@ var migrateCmd = &cobra.Command{
 	Use:   "migrate",
 	Short: "Run migrations",
 	Long:  `Run migrations.`,
-	Args: func(cmd *cobra.Command, args []string) error {
-		ray.Ray(args)
-		return nil
-	},
 	Run: func(cmd *cobra.Command, args []string) {
 		if _, err := os.Stat("./database/migrations"); os.IsNotExist(err) {
 			log.Fatal("No migration directory database/migrations found")
