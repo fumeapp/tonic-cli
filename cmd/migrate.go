@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/octoper/go-ray"
 	"github.com/spf13/cobra"
 
 	"github.com/fumeapp/tonic/database"
@@ -27,6 +28,10 @@ var migrateCmd = &cobra.Command{
 	Use:   "migrate",
 	Short: "Run migrations",
 	Long:  `Run migrations.`,
+	Args: func(cmd *cobra.Command, args []string) error {
+		ray.Ray(args)
+		return nil
+	},
 	Run: func(cmd *cobra.Command, args []string) {
 		if _, err := os.Stat("./database/migrations"); os.IsNotExist(err) {
 			log.Fatal("No migration directory database/migrations found")
@@ -42,14 +47,22 @@ var migrateCmd = &cobra.Command{
 			log.Fatal(err)
 		}
 
+		if isFresh, _ := cmd.Flags().GetBool("fresh"); isFresh {
+			if err := m.Drop(); err != nil {
+				log.Fatal(err)
+			}
+			log.Println("Dropping everything in the databsase")
+		}
 		if err := m.Up(); err != nil {
 			log.Fatal(err)
 		}
+		log.Println("Migrations up to date")
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(migrateCmd)
+	migrateCmd.PersistentFlags().Bool("fresh", false, "Wipe the database and run all migrations")
 
 	// Here you will define your flags and configuration settings.
 

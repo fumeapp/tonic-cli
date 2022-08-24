@@ -1,10 +1,18 @@
 module github.com/fumeapp/tonic-cli
 
+replace github.com/fumeapp/tonic => /Users/k/fumeapp/tonic
+
 go 1.19
 
-require github.com/fumeapp/tonic v0.1.13
+require (
+	github.com/fumeapp/tonic v0.1.13
+	github.com/octoper/go-ray v0.1.4
+)
 
 require (
+	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/gomarkdown/markdown v0.0.0-20210208175418-bda154fe17d8 // indirect
+	github.com/google/uuid v1.3.0 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/inconshreveable/mousetrap v1.0.1 // indirect

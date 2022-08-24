@@ -10,7 +10,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "cmd",
 	Short: "The command line interface for tonic",
-	Long:  `Run migrations, generate scaffolding, and more!!!`,
+	Long:  `Run migrations, generate scaffolding, and more.`,
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
