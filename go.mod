@@ -1,6 +1,6 @@
 module github.com/fumeapp/tonic-cli
 
-replace github.com/fumeapp/tonic => /Users/k/fumeapp/tonic
+// replace github.com/fumeapp/tonic => /Users/k/fumeapp/tonic
 
 go 1.19
 
